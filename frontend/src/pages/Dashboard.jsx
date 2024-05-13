@@ -7,32 +7,39 @@ import { getGoals, reset } from '../features/goals/goalSlice'
 import GoalItem from '../components/GoalItem'
 
 function Dashboard() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth)
-  const { goals, isLoading, isError, message } = useSelector((state) => state.goals)
-
+  const { user } = useSelector((state) => state.auth);
+  const { goals, isLoading, isError, message } = useSelector((state) => state.goals);
+  
+  console.log("Goals State:", goals); // Log goals state for debugging
+  
   useEffect(() => {
     if (isError) {
-      console.log(message);
+      console.log("Error:", message);
     }
     if (!user) {
-      navigate('/login')
+      navigate('/login');
     }
 
-    dispatch(getGoals())
+    dispatch(getGoals());
 
     return () => {
-      dispatch(reset())
-    }
-
-  }, [user, navigate, isError, message, dispatch])
+      dispatch(reset());
+    };
+  }, [user, navigate, isError, message, dispatch]);
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner />;
   }
 
+  // Ensure goals is defined before destructuring
+  if (!goals) {
+    return <div>Loading...</div>; // or any other loading indication
+  }
+
+  // Continue with rendering the component once goals are available
   return (
     <>
       <section className="heading">
@@ -48,9 +55,9 @@ function Dashboard() {
             ))}
           </div>
         ) : (<h3>You have not set any goals</h3>)}
-      </section >
+      </section>
     </>
-  )
+  );
 }
 
 export default Dashboard
