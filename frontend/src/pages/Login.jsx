@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from 'react-router-dom'
@@ -17,7 +17,7 @@ function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { user, isLoading, isError, isSuccess, message } = useSelector((state) => (state.auth))
+    const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
     useEffect(() => {
         if (isError) {

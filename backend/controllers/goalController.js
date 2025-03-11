@@ -72,7 +72,7 @@ const deleteGoal = asyncHandler(async (req, res) => {
     }
 
     // Delete the goal
-    await Goal.remove(req.params.id)
+    await Goal.findByIdAndDelete(req.params.id)
 
     res.status(200).json({ id: req.params.id })
 })

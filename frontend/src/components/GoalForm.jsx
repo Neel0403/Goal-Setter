@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createGoal } from "../features/goals/goalSlice"
+import {toast} from "react-toastify"
 
 function GoalForm() {
 
@@ -11,7 +12,11 @@ function GoalForm() {
     const onSubmit = (e) => {
         e.preventDefault()
 
+        if (text === '') {
+            toast.error("Goal cannot be empty")
+        }
         dispatch(createGoal({ text }))
+        toast.success("Goal added")
         setText('')
     }
     return (

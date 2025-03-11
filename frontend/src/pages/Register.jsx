@@ -19,7 +19,7 @@ function Register() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const { user, isLoading, isError, isSuccess, message } = useSelector((state) => (state.auth))
+    const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
     useEffect(() => {
         if (isError) {
@@ -41,7 +41,7 @@ function Register() {
     }
 
     const onSubmit = (e) => {
-        e.prevenDefault()
+        e.preventDefault()
 
         if (password !== confirmPassword) {
             toast.error('Passwords do not match')
@@ -59,7 +59,7 @@ function Register() {
 
     return (
         <>
-            <section className="heading">
+            <section className='heading'>
                 <h1>
                     <FaUser /> Register
                 </h1>
@@ -68,48 +68,54 @@ function Register() {
 
             <section className='form'>
                 <form onSubmit={onSubmit}>
-                    <div className="form-group">
+                    <div className='form-group'>
                         <input
-                            type="text"
-                            className="form-control"
-                            id="name"
-                            name="name"
+                            type='text'
+                            className='form-control'
+                            id='name'
+                            name='name'
                             value={name}
                             placeholder='Enter your name'
-                            onChange={onChange} />
+                            onChange={onChange}
+                        />
                     </div>
-                    <div className="form-group">
+                    <div className='form-group'>
                         <input
-                            type="email"
-                            className="form-control"
-                            id="email"
-                            name="email"
+                            type='email'
+                            className='form-control'
+                            id='email'
+                            name='email'
                             value={email}
                             placeholder='Enter your email'
-                            onChange={onChange} />
+                            onChange={onChange}
+                        />
                     </div>
-                    <div className="form-group">
+                    <div className='form-group'>
                         <input
-                            type="password"
-                            className="form-control"
-                            id="password"
-                            name="password"
+                            type='password'
+                            className='form-control'
+                            id='password'
+                            name='password'
                             value={password}
-                            placeholder='Enter your password'
-                            onChange={onChange} />
+                            placeholder='Enter password'
+                            onChange={onChange}
+                        />
                     </div>
-                    <div className="form-group">
+                    <div className='form-group'>
                         <input
-                            type="password"
-                            className="form-control"
-                            id="confirmPassword"
-                            name="confirmPassword"
+                            type='password'
+                            className='form-control'
+                            id='confirmPassword'
+                            name='confirmPassword'
                             value={confirmPassword}
-                            placeholder='Confirm Password'
-                            onChange={onChange} />
+                            placeholder='Confirm password'
+                            onChange={onChange}
+                        />
                     </div>
-                    <div className="form-group">
-                        <button type='submit' className='btn btn-block' >Submit</button>
+                    <div className='form-group'>
+                        <button type='submit' className='btn btn-block'>
+                            Submit
+                        </button>
                     </div>
                 </form>
             </section>
